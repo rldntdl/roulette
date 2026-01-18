@@ -453,13 +453,9 @@
                     isStopping = false;
                     currentSpeed = 0;
                     calculateWinner(); // 당첨자 발표
-                    
-                    // ▼▼▼ [수정된 부분] 버튼 상태 올바르게 변경 ▼▼▼
                     btnStart.disabled = false;   // 시작 버튼 활성화 (다시 돌릴 수 있게)
                     btnShuffle.disabled = false; // 섞기 버튼 활성화
                     btnStop.disabled = true;     // 중지 버튼 비활성화
-                    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
-                    
                     updateList();
                     return;
                 }
@@ -568,4 +564,5 @@
 </body>
 
 </html>
+
 
