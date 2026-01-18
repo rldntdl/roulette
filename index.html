@@ -201,14 +201,10 @@
         /* 룰렛 캔버스 영역 수정 */
         .wheel-container {
             position: relative;
-            
-            /* ▼▼▼ 수정된 부분 ▼▼▼ */
             width: 100%;           /* 가로 너비를 부모 영역에 맞춤 */
-            max-width: 400px;      /* PC에서는 너무 커지지 않게 최대 400px로 제한 */
+            max-width: 350px;      /* PC에서는 너무 커지지 않게 최대 400px로 제한 */
             aspect-ratio: 1 / 1;   /* 가로 세로 비율을 1:1(정사각형)로 유지 */
             height: auto;          /* 높이는 너비에 맞춰 자동 조절 */
-            /* ▲▲▲ 수정된 부분 ▲▲▲ */
-
             margin: 10px 0;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
             border: 6px solid black;
@@ -567,6 +563,7 @@
 </body>
 
 </html>
+
 
 
 
