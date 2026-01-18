@@ -440,22 +440,26 @@
             // [참고] drawWheel 내부에서 updateCurrentWinnerDisplay()가 호출되어 이름이 즉시 갱신됨
         }
 
-        function animate() {
+function animate() {
             if (!isSpinning) return;
 
             if (isStopping) {
-                // 1. 즉시 멈춤 설정
-                currentSpeed = 0; 
-                
-                // 2. 종료 조건 확인
-                if (currentSpeed < 0.02) {
+                // 속도에 0.96을 계속 곱해서 서서히 줄어들게 함
+                // (숫자를 0.99로 하면 더 천천히, 0.90으로 하면 더 빨리 멈춤)
+                currentSpeed = currentSpeed * 0.96;
+
+                // 속도가 아주 느려지면(0.1 미만) 완전히 정지
+                if (currentSpeed < 0.1) {
                     isSpinning = false;
                     isStopping = false;
                     currentSpeed = 0;
-                    calculateWinner(); // 당첨자 발표
-                    btnStart.disabled = true;   // 시작 버튼 활성화 (다시 돌릴 수 있게)
-                    btnShuffle.disabled = true; // 섞기 버튼 활성화
-                    btnStop.disabled = false;   // 중지 버튼 비활성화
+                    calculateWinner(); 
+                    
+                    // 버튼 상태 복구
+                    btnStart.disabled = false;
+                    btnShuffle.disabled = false;
+                    btnStop.disabled = true;
+                    
                     updateList();
                     return;
                 }
@@ -564,6 +568,3 @@
 </body>
 
 </html>
-
-
-
