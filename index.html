@@ -444,22 +444,29 @@
             if (!isSpinning) return;
 
             if (isStopping) {
-                currentSpeed *= 0.99; 
+                // 1. 즉시 멈춤 설정
+                currentSpeed = 0; 
+                
+                // 2. 종료 조건 확인
                 if (currentSpeed < 0.02) {
                     isSpinning = false;
                     isStopping = false;
                     currentSpeed = 0;
-                    calculateWinner(); 
-                    btnStart.disabled = true;
-                    btnShuffle.disabled = true;
-                    btnStop.disabled = false;
+                    calculateWinner(); // 당첨자 발표
+                    
+                    // ▼▼▼ [수정된 부분] 버튼 상태 올바르게 변경 ▼▼▼
+                    btnStart.disabled = false;   // 시작 버튼 활성화 (다시 돌릴 수 있게)
+                    btnShuffle.disabled = false; // 섞기 버튼 활성화
+                    btnStop.disabled = true;     // 중지 버튼 비활성화
+                    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+                    
                     updateList();
                     return;
                 }
             }
 
             currentRotation += currentSpeed;
-            if (currentRotation >= 360) currentRotation -= 360;
+            if (currentRotation >= 360) currentRotation -= 360; 
 
             drawWheel(); 
             animationId = requestAnimationFrame(animate);
@@ -561,3 +568,4 @@
 </body>
 
 </html>
+
