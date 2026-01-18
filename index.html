@@ -440,23 +440,38 @@
             // [참고] drawWheel 내부에서 updateCurrentWinnerDisplay()가 호출되어 이름이 즉시 갱신됨
         }
 
-        function animate() {
+function animate() {
             if (!isSpinning) return;
 
             if (isStopping) {
-                currentSpeed *= 0.99; 
+                // [수정된 부분] 
+                // 기존: currentSpeed *= 0.99; (천천히 감속)
+                // 변경: currentSpeed = 0; (즉시 정지)
+                currentSpeed = 0; 
+                
+                // 속도가 0이 되었으므로 바로 종료 로직 실행
                 if (currentSpeed < 0.02) {
                     isSpinning = false;
                     isStopping = false;
                     currentSpeed = 0;
-                    calculateWinner(); 
+                    calculateWinner();  // 당첨자 계산
+                    
+                    // 버튼 상태 복구
                     btnStart.disabled = false;
                     btnShuffle.disabled = false;
                     btnStop.disabled = true;
+                    
                     updateList();
-                    return;
+                    return; // 함수 종료 (더 이상 회전하지 않음)
                 }
             }
+
+            currentRotation += currentSpeed;
+            if (currentRotation >= 360) currentRotation -= 360; 
+
+            drawWheel(); 
+            animationId = requestAnimationFrame(animate);
+        }
 
             currentRotation += currentSpeed;
             if (currentRotation >= 360) currentRotation -= 360; 
@@ -561,5 +576,6 @@
 </body>
 
 </html>
+
 
 
