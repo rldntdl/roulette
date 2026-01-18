@@ -444,9 +444,9 @@ function animate() {
             if (!isSpinning) return;
 
             if (isStopping) {
-                // 속도에 0.96을 계속 곱해서 서서히 줄어들게 함
+                // 속도에 0.99을 계속 곱해서 서서히 줄어들게 함
                 // (숫자를 0.99로 하면 더 천천히, 0.90으로 하면 더 빨리 멈춤)
-                currentSpeed = currentSpeed * 0.96;
+                currentSpeed = currentSpeed * 0.99;
 
                 // 속도가 아주 느려지면(0.1 미만) 완전히 정지
                 if (currentSpeed < 0.1) {
@@ -568,3 +568,4 @@ function animate() {
 </body>
 
 </html>
+
