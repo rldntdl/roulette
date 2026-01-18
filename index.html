@@ -453,9 +453,9 @@
                     isStopping = false;
                     currentSpeed = 0;
                     calculateWinner(); // 당첨자 발표
-                    btnStart.disabled = false;   // 시작 버튼 활성화 (다시 돌릴 수 있게)
-                    btnShuffle.disabled = false; // 섞기 버튼 활성화
-                    btnStop.disabled = true;     // 중지 버튼 비활성화
+                    btnStart.disabled = true;   // 시작 버튼 활성화 (다시 돌릴 수 있게)
+                    btnShuffle.disabled = true; // 섞기 버튼 활성화
+                    btnStop.disabled = false;   // 중지 버튼 비활성화
                     updateList();
                     return;
                 }
@@ -564,5 +564,6 @@
 </body>
 
 </html>
+
 
 
